@@ -2,3 +2,5 @@
 npm install
 // 启动服务
 npm start 
+// 打包
+npm build
