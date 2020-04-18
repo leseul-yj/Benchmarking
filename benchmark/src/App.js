@@ -1,25 +1,44 @@
-import React from 'react';
+import React,{Component,createContext,useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+//相当于全局变量 可以有多个context 而且可以相互嵌套
+// context会影响组件的独立性 不再纯粹
+const BatteryContext = createContext();
+const spinContext = createContext(false);
 
+class Leaf extends Component {
+  render() {
+    return (
+      <BatteryContext.Consumer>
+        {
+          battery => (
+            <spinContext.Consumer>
+              {
+                spinner => <h1>Battery:{battery} loading:{String(spinner)}</h1>
+              }
+            </spinContext.Consumer>
+          )
+        }
+      </BatteryContext.Consumer>)
+  }
+}
+class Middle extends Component {
+  render() {
+    return <Leaf></Leaf>
+  }
+}
 function App() {
+  let [battery,SetBattery] = useState(60);
+  let [spinner,setSpinner] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BatteryContext.Provider value={battery}>
+      <spinContext.Provider value={spinner}>
+
+        <button type="button" onClick={() => SetBattery(battery - 1)}>press</button>
+        <button type="button" onClick={() => setSpinner(!spinner)}>online</button>
+        <Middle></Middle>
+      </spinContext.Provider>
+    </BatteryContext.Provider>
   );
 }
 
