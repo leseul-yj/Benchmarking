@@ -1,6 +1,7 @@
 import React,{Component,createContext,useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import LazySuspense from './lazySuspense'
 //相当于全局变量 可以有多个context 而且可以相互嵌套
 // context会影响组件的独立性 不再纯粹
 const BatteryContext = createContext();
@@ -53,6 +54,8 @@ function App() {
         <button type="button" onClick={() => SetBattery(battery - 1)}>press</button>
         <button type="button" onClick={() => setSpinner(!spinner)}>online</button>
         <Middle></Middle>
+        <h1>lazy suspense配合使用</h1>
+        <LazySuspense></LazySuspense>
       </spinContext.Provider>
     </BatteryContext.Provider>
   );
