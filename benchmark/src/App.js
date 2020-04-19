@@ -22,9 +22,26 @@ class Leaf extends Component {
       </BatteryContext.Consumer>)
   }
 }
+// 使用contextType contextType不能用在无状态组件中
+// 并且只有一个context才能用
+class Leaf2 extends Component {
+  static contextType = BatteryContext;
+
+  render() {
+    const battery = this.context;
+    return (
+      <h1>battery2：{battery}</h1>
+    )
+  }
+}
 class Middle extends Component {
   render() {
-    return <Leaf></Leaf>
+    return (
+      <>
+        <Leaf2></Leaf2>
+        <Leaf></Leaf>
+      </>
+    )
   }
 }
 function App() {
@@ -33,7 +50,6 @@ function App() {
   return (
     <BatteryContext.Provider value={battery}>
       <spinContext.Provider value={spinner}>
-
         <button type="button" onClick={() => SetBattery(battery - 1)}>press</button>
         <button type="button" onClick={() => setSpinner(!spinner)}>online</button>
         <Middle></Middle>
