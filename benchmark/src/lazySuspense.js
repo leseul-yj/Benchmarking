@@ -26,6 +26,7 @@ export default class LazySuspense extends Component {
       hasError: true
     })
   }
+
   render() {
     if(this.state.hasError) {
       return (<div>error</div>)

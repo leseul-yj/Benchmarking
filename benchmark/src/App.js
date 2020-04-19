@@ -48,6 +48,7 @@ class Middle extends Component {
 function App() {
   let [battery,SetBattery] = useState(60);
   let [spinner,setSpinner] = useState(false);
+
   return (
     <BatteryContext.Provider value={battery}>
       <spinContext.Provider value={spinner}>
