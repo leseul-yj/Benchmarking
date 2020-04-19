@@ -1,7 +1,8 @@
 import React,{Component,createContext,useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import LazySuspense from './lazySuspense'
+import LazySuspense from './lazySuspense';
+
 //相当于全局变量 可以有多个context 而且可以相互嵌套
 // context会影响组件的独立性 不再纯粹
 const BatteryContext = createContext();
@@ -57,6 +58,9 @@ function App() {
         <Middle></Middle>
         <h1>lazy suspense配合使用</h1>
         <LazySuspense></LazySuspense>
+        <hr />
+        <h1>使用memo</h1>
+
       </spinContext.Provider>
     </BatteryContext.Provider>
   );
