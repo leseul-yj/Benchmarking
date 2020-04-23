@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Memo from './memo';
-import {EffectHook} from './lesson4'
+import {EffectHook,ContextHook} from './lesson4'
 import StateHook from './stateHook';
 ReactDOM.render(
   <React.StrictMode>
@@ -12,6 +12,7 @@ ReactDOM.render(
     <Memo></Memo>
     <StateHook></StateHook>
     <EffectHook></EffectHook>
+    <ContextHook></ContextHook>
   </React.StrictMode>,
   document.getElementById('root')
 );
